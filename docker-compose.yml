@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  backend:
+    container_name: backend-api
+    restart: always
+    build: ./sisventas
+    ports: 
+      - "8087:8087"
+    volumes:
+      - .:/sisventas
+    command: python manage.py runserver 0.0.0.0:8087
+  frontend:
+    container_name: frontend-api
+    restart: always
+    build: ./proyectfinalvue3
+    ports: 
+      - "8086:8086"
