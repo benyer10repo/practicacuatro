@@ -1,19 +1,17 @@
 FROM node:lts-alpine as build-stage
-
-RUN npm install -g json-server
 WORKDIR /proyectfinalvue3
-COPY package*.json ./
 
+COPY package*.json /proyectfinalvue3
+RUN npm install -g @vue/cli
 RUN npm install
 
-COPY . .
+COPY . /proyectfinalvue3
 
-RUN npm run build
+RUN npm run build --prod
 
-WORKDIR /proyectfinalvue3/database
-ENTRYPOINT ["json-server", "db.json", "--port", "5000", "--host", "0.0.0.0"]
+CMD ["npm","run", "serve"]
 
 FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /app/dist /usr/share/nginx/html
-EXPOSE 8086
+COPY --from=build-stage /proyectfinalvue3/dist /usr/share/nginx/html
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

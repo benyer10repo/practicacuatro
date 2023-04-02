@@ -5,13 +5,23 @@ services:
     restart: always
     build: ./sisventas
     ports: 
-      - "8087:8087"
-    volumes:
-      - .:/sisventas
+      - 8087:8087
     command: python manage.py runserver 0.0.0.0:8087
+
   frontend:
     container_name: frontend-api
     restart: always
     build: ./proyectfinalvue3
     ports: 
-      - "8086:8086"
+      - 8086:80
+    environment:
+      NODE_ENV: dev
+    depends_on:
+      - json-server
+  
+  json-server:
+    container_name: json-server
+    build: ./proyectfinalvue3/database
+    ports:
+      - 5000:5000
+      
