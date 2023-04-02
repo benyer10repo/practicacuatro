@@ -3,6 +3,7 @@ WORKDIR /proyectfinalvue3
 
 COPY package*.json /proyectfinalvue3
 RUN npm install -g @vue/cli
+RUN npm install -g json-server
 RUN npm install
 
 COPY . /proyectfinalvue3
