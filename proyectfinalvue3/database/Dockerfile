@@ -1,4 +1,4 @@
-#FROM node:lts-alpine as build-stage
+FROM node:lts-alpine as build-stage
 WORKDIR /proyectfinalvue3/database/
 RUN npm install -g json-server
 COPY . .
