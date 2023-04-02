@@ -45,7 +45,7 @@ export default {
     methods: {
         
         crearCategoria(payload){
-            this.axios.post("http://0.0.0.0:5000/Categoria",payload)
+            this.axios.post("http://localhost:5000/Categoria",payload)
             .then((response)=>{
                 
                 this.payload={
