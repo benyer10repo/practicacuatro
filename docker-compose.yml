@@ -1,5 +1,12 @@
 version: '3.9'
 services:
+
+  json-server:
+    container_name: json-server
+    build: ./proyectfinalvue3/database
+    ports:
+      - 5000:5000
+
   backend:
     container_name: backend-api
     restart: always
@@ -19,9 +26,5 @@ services:
     depends_on:
       - json-server
   
-  json-server:
-    container_name: json-server
-    build: ./proyectfinalvue3/database
-    ports:
-      - 5000:5000
+
       
